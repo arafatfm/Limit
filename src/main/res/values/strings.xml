@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Limit</string>
+    <string name="accessibility_service_name">Limit</string>
+    <string name="accessibility_description">ABOUT LIMIT\n\nDescription loading.....</string>
+    <string name="accessibility_error">Accessibility Service is not working. You need to restart Limit.</string>
+</resources>
