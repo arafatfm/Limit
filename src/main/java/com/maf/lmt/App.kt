@@ -5,7 +5,6 @@ import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 
 class App : Application() {
-    private val TAG = "zBug" + javaClass.simpleName
 
     companion object {
         var isAccessibilityServiceConnected = false

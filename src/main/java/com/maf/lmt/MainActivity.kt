@@ -11,8 +11,8 @@ import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import android.widget.ToggleButton
-import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -77,10 +77,18 @@ class MainActivity : AppCompatActivity() {
 
             if (App.isForegroundServiceActive) {
                 tButtonMain.isChecked = false
+                buttonStopMission.visibility = View.INVISIBLE
                 stopService(serviceIntent)
             } else {
-                tButtonMain.isChecked = true
-                startForegroundService(serviceIntent)
+                if (App.isAccessibilityServiceConnected && Settings.canDrawOverlays(this)) {
+                    tButtonMain.isChecked = true
+                    startForegroundService(serviceIntent)
+                }
+                else {
+                    Toast.makeText(this, "Provide necessary permissions", Toast.LENGTH_SHORT).show()
+                    tButtonMain.isChecked = false
+                    return@setOnClickListener
+                }
             }
             tButtonAccessibility.isEnabled = !tButtonMain.isChecked
             tButtonOverlay.isEnabled = !tButtonMain.isChecked
